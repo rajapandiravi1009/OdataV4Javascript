@@ -1,0 +1,41 @@
+@{;
+    ViewBag.Title = "Home Page";
+}
+<div id="Grid"></div>
+
+<script>
+    
+    
+    var data = new ej.data.DataManager({
+        url: 'http://localhost:49442/Orders',
+        adaptor: new ej.data.ODataV4Adaptor(),
+        crossDomain: true
+    });
+
+    var grid = new ej.grids.Grid({
+        dataSource: data,
+        allowPaging: true,
+        allowFiltering: true,
+        allowGrouping: true,
+        //load: function () {
+        //    var serverTimeZoneDiff = -4.0;  // if your server is in EDT time zone (UTC -4.0) (in hours)
+        //    var clientSideTimeZoneDiff = new Date().getTimezoneOffset() / 60; // get client time zone difference and convert it to hours;
+
+        //    ej.data.DataUtil.serverTimezoneOffset = serverTimeZoneDiff + clientSideTimeZoneDiff;
+        //},
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel', 'Search'],
+        //editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true },
+        columns: [
+            { field: 'OrderID', isPrimaryKey: true, headerText: 'Order ID', width: 120 },
+            { field: 'CustomerID', width: 140, headerText: 'Customer ID' },
+            { field: 'Freight', headerText: 'Freight', width: 120, format: 'C2' },
+            { field: 'ShipCity', headerText: 'Ship City', width: 120 },
+            { field: 'OrderDate', headerText: 'Order Date', format: 'dd/MM/yyyy hh:mm a', width: 180 },
+            { field: 'ShippedDate', headerText: 'Shipped Date', type: 'DateTime', format: 'yyyy-MM-dd hh:mm:ss a', editType: 'datetimepickeredit', width: 180 },
+            { field: 'Verified', headerText: 'Verified', width: 120 },
+            { field: 'State', headerText: 'State', width: 120 }
+        ]
+    });
+    grid.appendTo('#Grid');
+</script>
+

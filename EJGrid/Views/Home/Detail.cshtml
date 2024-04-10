@@ -1,0 +1,11 @@
+﻿@model EJGrid.Models.EditableOrder
+
+@{
+
+    <span> @Model.Child[0].OrderID</span>
+    foreach (var temp in Model.Child)
+    {
+      <li> @temp.Test</li>
+    }
+    
+}
